@@ -1,22 +1,22 @@
 //* Компонент фильтра в футере
 
-import React from 'react';
+import React, { Component } from 'react';
 import './TasksFilter.css';
 
-const TasksFilter = () => {
-    return (
-        <ul className="filters">
-            <li>
-                <button className="selected">Все</button>
-            </li>
-            <li>
-                <button>Активно</button>
-            </li>
-            <li>
-                <button>Выполнено</button>
-            </li>
-        </ul>
-    );
-}
-
-export default TasksFilter;
+export default class TasksFilter extends Component {
+    render() {
+        return (
+            <ul className="filters">
+                <li>
+                    <button className="selected">Все</button>
+                </li>
+                <li>
+                    <button>Активно</button>
+                </li>
+                <li>
+                    <button>Выполнено</button>
+                </li>
+            </ul>
+        );
+    }
+} 
