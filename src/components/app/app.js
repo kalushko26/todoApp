@@ -5,7 +5,7 @@ import './app.css';
 
 import Footer from '../Footer';
 import NewTaskForm from '../NewTaskForm';
-import Task from '../Task';
+import TaskList from '../TaskList';
 // import TaskFilter from '../TaskFilter';
 
 const App = () => {
@@ -19,10 +19,8 @@ const App = () => {
     return (
         <section className='todoapp'>
             <NewTaskForm toDo={1} done={3} />
-            <section className='main'>
-                <Task todos={todoData} />
-                <Footer />
-            </section>
+            <TaskList todos={todoData} />
+            <Footer />
         </section>
 
     );
