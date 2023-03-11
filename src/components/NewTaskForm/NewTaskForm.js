@@ -5,7 +5,7 @@ import './NewTaskForm.css';
 
 const NewTaskForm = ({toDo, done}) => {
     return (
-        <header className="header">
+        <form className="header">
             <h1>todos</h1>
             <label>
                 <input
@@ -13,7 +13,7 @@ const NewTaskForm = ({toDo, done}) => {
                     placeholder="Добавить задачу"
                     autoFocus />
             </label>
-        </header>
+        </form>
     );
 }
 

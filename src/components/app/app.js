@@ -19,8 +19,11 @@ const App = () => {
     return (
         <section className='todoapp'>
             <NewTaskForm toDo={1} done={3} />
-            <TaskList todos={todoData} />
-            <Footer />
+            <TaskList
+                todoData={todoData}
+                onDeleted={(id) => console.log('del', id)} />
+            <Footer
+                todoData={todoData} />
         </section>
 
     );

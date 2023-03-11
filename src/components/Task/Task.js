@@ -22,34 +22,40 @@ export default class Task extends Component {
 
     render() {
 
-        const { label, important = false } = this.props;
+        const { label } = this.props;
         const { done } = this.state;
 
-        let classNames = 'todo-list';
-        if (done) {
-            classNames += 'completed';
-        }
+        let classNames = '';
 
-        const style = {
-            color: important ? 'steelblue' : 'black',
-            fontWeight: important ? 'bold' : 'normal'
-        };
+        // const style = {
+        //     color: important ? 'steelblue' : 'black',
+        //     fontWeight: important ? 'bold' : 'normal'
+        // };
 
         return (
-            <div className='view'>
-                <input className="toggle" type="checkbox" />
-                <label
-                    style={style}
-                    onClick={this.onLabelClick}>
-                    {label}
-                    <span className="description">Редактировать задачу</span>
-                    <span className="created">создана 5 мин. назад</span>
-                </label>
+            <li className={done ? (classNames += 'completed') : classNames}>
+                <div className='view'>
+                    <input className="toggle" type="checkbox" />
+                    <label
+                        // style={style}
+                        onClick={this.onLabelClick}>
 
+                        <span className="description">{label}</span>
+                        <span className="created">создана 5 мин. назад</span>
+                    </label>
 
-                <button className="icon icon-edit"></button>
-                <button className="icon icon-destroy"></button>
-            </div>
+                    <button
+                        type="button"
+                        className="icon icon-edit"
+                    ></button>
+                    <button
+                        type="button"
+                        className="icon icon-destroy"
+                        onClick={this.props.onDeleted}
+                        value
+                    ></button>
+                </div>
+            </li>
         );
     }
 }

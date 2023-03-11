@@ -8,13 +8,17 @@ export default class TasksFilter extends Component {
         return (
             <ul className="filters">
                 <li>
-                    <button className="selected">Все</button>
+                    <button
+                        type="button"
+                        className="selected">Все</button>
                 </li>
                 <li>
-                    <button>Активно</button>
+                    <button
+                        type="button">Активно</button>
                 </li>
                 <li>
-                    <button>Выполнено</button>
+                    <button
+                        type="button">Выполнено</button>
                 </li>
             </ul>
         );
