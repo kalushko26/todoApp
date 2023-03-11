@@ -1,20 +1,24 @@
 //* Компонент формы для добавления
 
-import React from 'react';
+import React, { Component } from 'react';
 import './NewTaskForm.css';
 
-const NewTaskForm = ({toDo, done}) => {
-    return (
-        <form className="header">
-            <h1>todos</h1>
-            <label>
-                <input
-                    className='new-todo'
-                    placeholder="Добавить задачу"
-                    autoFocus />
-            </label>
-        </form>
-    );
+export default class NewTaskForm extends Component {
+
+    render() {
+
+        return (
+            <form className="header">
+                <h1>todos</h1>
+                <label>
+                    <input
+                        className='new-todo'
+                        placeholder="Добавить задачу"
+                        autoFocus
+                        onClick={() => this.props.addTodoItem('Hello world')} />
+                </label>
+            </form>
+        );
+    }
 }
 
-export default NewTaskForm;
