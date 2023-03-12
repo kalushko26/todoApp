@@ -27,7 +27,9 @@ export default class App extends Component {
             this.createTodoItem('Сделать webpack'),
             this.createTodoItem('Выучить JS'),
             this.createTodoItem('Выучить React')
-        ]
+        ],
+        term: 'JS',
+        filter: 'all' // active , all, done
     };
 
     // Удаление элемента из массива
@@ -88,10 +90,38 @@ export default class App extends Component {
         });
     };
 
+    // Функция поиска search для search
+    search(items, term) {
+        if (term.length === 0) {
+            return items;
+        }
+
+        return items.filter((item) => {
+            return item.label.indexOf(term) > -1;
+        });
+    }
+
+    // Реализация filter
+    filter(items, filter) {
+
+        switch (filter) {
+            case 'all':
+                return items;
+            case 'active':
+                return items.filter((item) => !item.done);
+            case 'done':
+                return items.filter((item) => item.done);
+            default:
+                return items;
+        };
+    }
+
     render() {
-        const { todoData } = this.state
+        const { todoData, term, filter } = this.state
         const doneCount = todoData.filter((el) => el.done).length;
         const todoCount = todoData.length - doneCount;
+
+        const filterItems = this.filter(this.search(todoData, term), filter);
 
         return (
             <section className='todoapp'>
