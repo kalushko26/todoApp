@@ -1,0 +1,7 @@
+
+    <App>               <-- todoData
+        <NewTaskForm>   <-- addTodoItem,
+        <Task>
+            <TaskList>  
+        <TaskFilter>
+        <Footer>

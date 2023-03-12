@@ -5,7 +5,7 @@ import './TaskList.css';
 
 import Task from '../Task/Task';
 
-function TaskList({ todoData, onDeleted }) {
+function TaskList({ todoData, onDeleted, onToggleDone }) {
 
     const elements = todoData.map((item) => {
         const { id, ...itemProps } = item;
@@ -15,6 +15,7 @@ function TaskList({ todoData, onDeleted }) {
                 key={item.id}
                 onDeleted={() => onDeleted(item.id)}
                 completed={item.completed}
+                onToggleDone={() => onToggleDone(item.id)}
             />
         )
     })

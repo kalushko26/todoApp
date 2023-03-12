@@ -9,23 +9,47 @@ import TaskList from '../TaskList';
 // import TaskFilter from '../TaskFilter';
 
 export default class App extends Component {
+    // Генерация ID
+    maxId = 4;
+
+    // Форма ввода данных
+    createTodoItem(label) {
+        return ({
+            label,
+            done: false,
+            id: this.maxId++
+        });
+    };
+
+    // Исходный массив данных (задач)
     state = {
         todoData: [
-            { label: 'Сделать webpack', id: 1 },
-            { label: 'Выучить JS', id: 2 },
-            { label: 'Выучить React', id: 3 }
+            this.createTodoItem('Сделать webpack'),
+            this.createTodoItem('Выучить JS'),
+            this.createTodoItem('Выучить React')
         ]
     };
 
-    // generate id
-    maxId = 4;
+    // Удаление элемента из массива
+    deleteItem = (id) => {
+        this.setState(({ todoData }) => {
+            const idx = todoData.findIndex((el) => el.id === id);
+            // console.log(idx)
 
-    // add element in array
+            const newArray = [
+                ...todoData.slice(0, idx),
+                ...todoData.slice(idx + 1)
+            ];
+
+            return {
+                todoData: newArray
+            };
+        });
+    };
+
+    // Добавление элемента в массив
     addTodoItem = (text) => {
-        const newItem = {
-            label: text,
-            id: this.maxId++
-        };
+        const newItem = this.createTodoItem(text);
 
         this.setState(({ todoData }) => {
             const newArr = [
@@ -37,33 +61,48 @@ export default class App extends Component {
                 todoData: newArr
             };
         });
+    };
+
+    toggleProperty(arr, id, propName) {
+        const idx = arr.findIndex((el) => el.id === id);
+
+        const oldItem = arr[idx];
+        const newItem = {
+            ...oldItem,
+            [propName]: !oldItem[propName]
+        };
+
+        return [
+            ...arr.slice(0, idx),
+            newItem,
+            ...arr.slice(idx + 1)
+        ];
     }
 
-    deleteItem = (id) => {
+    // Реакция при нажатии на кнопку done
+    onToggleDone = (id) => {
         this.setState(({ todoData }) => {
-            const idx = todoData.findIndex((el) => el.id === id);
-            // console.log(idx)
-
-            const before = todoData.slice(0, idx);
-            const after = todoData.slice(idx + 1);
-
-            const newArray = [...before, ...after];
-
             return {
-                todoData: newArray
-            };
+                todoData: this.toggleProperty(todoData, id, 'done')
+            }
         });
-    }
+    };
 
     render() {
+        const { todoData } = this.state
+        const doneCount = todoData.filter((el) => el.done).length;
+        const todoCount = todoData.length - doneCount;
+
         return (
             <section className='todoapp'>
                 <NewTaskForm addTodoItem={this.addTodoItem} />
                 <TaskList
-                    todoData={this.state.todoData}
-                    onDeleted={this.deleteItem} />
+                    todoData={todoData}
+                    onDeleted={this.deleteItem}
+                    onToggleDone={this.onToggleDone} />
                 <Footer
-                    todoData={this.state.todoData} />
+                    todoData={todoData}
+                    toDo={todoCount} />
             </section>
         );
     }

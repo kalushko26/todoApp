@@ -5,6 +5,7 @@ import './Task.css';
 
 export default class Task extends Component {
 
+/*
     constructor() {
         super();
         // В state хранятся свойства обьекта
@@ -19,11 +20,12 @@ export default class Task extends Component {
             });
         };
     }
+*/
 
     render() {
 
-        const { label } = this.props;
-        const { done } = this.state;
+        const { label, onDeleted, done, onToggleDone } = this.props;
+        // const { done } = this.state;
 
         let classNames = '';
 
@@ -38,7 +40,7 @@ export default class Task extends Component {
                     <input className="toggle" type="checkbox" />
                     <label
                         // style={style}
-                        onClick={this.onLabelClick}>
+                        onClick={onToggleDone}>
 
                         <span className="description">{label}</span>
                         <span className="created">создана 5 мин. назад</span>
@@ -51,7 +53,7 @@ export default class Task extends Component {
                     <button
                         type="button"
                         className="icon icon-destroy"
-                        onClick={this.props.onDeleted}
+                        onClick={onDeleted}
                         value
                     ></button>
                 </div>
