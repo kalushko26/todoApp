@@ -5,22 +5,22 @@ import './Task.css';
 
 export default class Task extends Component {
 
-/*
-    constructor() {
-        super();
-        // В state хранятся свойства обьекта
-        this.state = {
-            done: false
-        };
-
-        // Обработчик событий при нажатии на задачу
-        this.onLabelClick = () => {
-            this.setState({
-                done: true
-            });
-        };
-    }
-*/
+    /*
+        constructor() {
+            super();
+            // В state хранятся свойства обьекта
+            this.state = {
+                done: false
+            };
+    
+            // Обработчик событий при нажатии на задачу
+            this.onLabelClick = () => {
+                this.setState({
+                    done: true
+                });
+            };
+        }
+    */
 
     render() {
 
@@ -37,7 +37,9 @@ export default class Task extends Component {
         return (
             <li className={done ? (classNames += 'completed') : classNames}>
                 <div className='view'>
-                    <input className="toggle" type="checkbox" />
+                    <input
+                        className="toggle"
+                        type="checkbox" />
                     <label
                         // style={style}
                         onClick={onToggleDone}>
@@ -49,6 +51,7 @@ export default class Task extends Component {
                     <button
                         type="button"
                         className="icon icon-edit"
+
                     ></button>
                     <button
                         type="button"
